@@ -15,6 +15,9 @@ class Kernel extends ConsoleKernel {
 		'App\Console\Commands\Harvest',
 		'App\Console\Commands\HarvestTheCodingLove',
 		'App\Console\Commands\HarvestUXReactions',
+		'App\Console\Commands\Scrape',
+		'App\Console\Commands\ScrapeTheCodingLove',
+		'App\Console\Commands\ScrapeUXReactions',
 	];
 
 	/**

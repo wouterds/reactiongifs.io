@@ -51,59 +51,37 @@ class ScrapeTheCodingLove extends Command {
 
 	private function scrapeBatch()
 	{
-		$batch = HarvestLink::where('scraped_raw_id', null)->take($this->batchSize)->orderBy('created_on', 'ASC');
+		$batch = HarvestLink::where('scrape_raw_id', null)->take($this->batchSize)->orderBy('created_at', 'ASC')->get();
 
-		$this->info("Fetched " . count($links) . " links");
+		$this->info("Fetched " . count($batch) . " links");
 
-		foreach ($batch as $link) {
-
+		foreach ($batch as $harvestLink) {
+			$this->scrapeLink($harvestLink);
 		}
+
+		echo "\n";
 
 		if (count($batch) === $this->batchSize) {
-			$this->scrapeBatch();
+			return $this->scrapeBatch();
 		}
+
+		$this->info("Everything is scraped!");
 	}
 
-	private function scrapePost($postUrl)
+	private function scrapeLink($harvestLink)
 	{
-		$this->info("Scraping " . $postUrl);
+		$this->info("Scraping " . $harvestLink->url);
 
 		$client = new GuzzleHttp\Client();
-		$response = $client->get($url);
+		$response = $client->get($harvestLink->url);
 
 		if ($body = $response->getBody()) {
-			$dom = FluentDOM::QueryCss($body, 'text/html');
+			$scrapeRaw = new ScrapeRaw();
+			$scrapeRaw->raw = $body;
+			$scrapeRaw->md5 = md5($body);
+			$scrapeRaw->save();
 
-			$links = $dom->find('#main div.post h3 a');
-
-			$this->info("Found " . count($links) . " links");
-
-			$links->each(function($link) {
-				$link = FluentDOM::QueryCss($link);
-				$link = $link->attr('href');
-
-				if (HarvestLink::where('url', $link)->count() === 0) {
-					$harvest = new HarvestLink();
-					$harvest->source = 'THECODINGLOVE';
-					$harvest->url = $link;
-					$harvest->save();
-
-					$this->info('Adding ' . $link);
-				} else {
-					$this->error('Skipping ' . $link);
-				}
-			});
-
-			$nextPage = $dom->find('div.footer a.previouslink');
-
-			echo "\n";
-
-			$link = $nextPage ? $nextPage->attr('href') : null;
-			if ($link) {
-				return $this->harvestPage($link);
-			}
-
-			return $this->info('Finished, we have ran out of pages.');
+			$harvestLink->scrape_raw_id = $scrapeRaw->id;
 		}
 
 		return $this->error('Failed to get body..');

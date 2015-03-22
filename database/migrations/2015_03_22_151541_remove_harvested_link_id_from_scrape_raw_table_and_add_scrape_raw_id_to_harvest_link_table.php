@@ -19,7 +19,7 @@ class RemoveHarvestedLinkIdFromScrapeRawTableAndAddScrapeRawIdToHarvestLinkTable
 
 		Schema::table('harvest_links', function($table)
 		{
-			$table->integer('scrape_raw_id')->after('id')->index()->default(0);
+			$table->integer('scrape_raw_id')->after('id')->index()->nullable();
 		});
 	}
 
