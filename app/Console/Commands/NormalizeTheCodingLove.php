@@ -52,11 +52,15 @@ class NormalizeTheCodingLove extends Command {
 
 	private function normalizeBatch()
 	{
-		$batch = ScrapeRaw::with('harvestLink')->where('picture_id', null)->take($this->batchSize)->orderBy('created_at', 'ASC')->get();
+		$batch = ScrapeRaw::whereHas('harvestLink', function($query) {
+			$query->where('source', 'THECODINGLOVE');
+		})->where('picture_id', null)->take($this->batchSize)->orderBy('created_at', 'ASC')->get();
 
 		$this->info("Fetched " . count($batch) . " links");
 
 		foreach ($batch as $rawData) {
+
+			die(var_dump($rawData->harvestLink));
 			$this->normalizeRaw($rawData);
 		}
 
