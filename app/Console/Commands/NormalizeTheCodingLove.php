@@ -75,6 +75,10 @@ class NormalizeTheCodingLove extends Command {
 		$response = $client->get($imgSrc);
 
 		if ($body = $response->getBody()) {
+			if (empty($body)) {
+				return null;
+			}
+
 			$filename = sha1($imgSrc . microtime()) . '.gif';
 			$tmpFile = '/tmp/' . $filename;
 			file_put_contents($tmpFile, $body);
