@@ -115,46 +115,51 @@ class NormalizeTheCodingLove extends Command {
 			return $this->error("Failed normalizing");
 		}
 
-		$img = $post->find('img')->attr('src');
-		$imgData = $this->getImageData($img);
+		try {
+			$img = $post->find('img')->attr('src');
+			$imgData = $this->getImageData($img);
 
-		if ($imgData === false) {
-			return $this->error("Failed getting image data");
+			if ($imgData === false) {
+				return $this->error("Failed getting image data");
+			}
+
+			$picture = Picture::where('md5', $imgData['md5'])->first();
+
+			if (!$picture) {
+				rename($imgData['tmp'], $imgData['local']);
+
+				$picture = new Picture();
+				$picture->width = $imgData['width'];
+				$picture->height = $imgData['height'];
+				$picture->url = $imgData['url'];
+				$picture->mimetype = $imgData['mimetype'];
+				$picture->size = $imgData['size'];
+				$picture->md5 = $imgData['md5'];
+				$picture->url = $imgData['url'];
+				$picture->save();
+			}
+
+			$rawData->picture_id = $picture->id;
+			$rawData->save();
+
+			$title = $post->find('h3')->text();
+			$slug = Str::slug($title);
+
+			$entry = Entry::where('slug', $slug)->where('picture_id', $picture->id)->first();
+
+			if ($entry) {
+				return;
+			}
+
+			$entry = new Entry();
+			$entry->picture_id = $picture->id;
+			$entry->title = $title;
+			$entry->slug = $slug;
+			$entry->save();
+		} catch (Exception $e) {
+			$this->error("Failed normalizing");
+			return $this->error("Error: " . $e->getMessage());
 		}
-
-		$picture = Picture::where('md5', $imgData['md5'])->first();
-
-		if (!$picture) {
-			rename($imgData['tmp'], $imgData['local']);
-
-			$picture = new Picture();
-			$picture->width = $imgData['width'];
-			$picture->height = $imgData['height'];
-			$picture->url = $imgData['url'];
-			$picture->mimetype = $imgData['mimetype'];
-			$picture->size = $imgData['size'];
-			$picture->md5 = $imgData['md5'];
-			$picture->url = $imgData['url'];
-			$picture->save();
-		}
-
-		$rawData->picture_id = $picture->id;
-		$rawData->save();
-
-		$title = $post->find('h3')->text();
-		$slug = Str::slug($title);
-
-		$entry = Entry::where('slug', $slug)->where('picture_id', $picture->id)->first();
-
-		if ($entry) {
-			return;
-		}
-
-		$entry = new Entry();
-		$entry->picture_id = $picture->id;
-		$entry->title = $title;
-		$entry->slug = $slug;
-		$entry->save();
 
 		return true;
 	}
