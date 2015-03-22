@@ -30,6 +30,7 @@ class Kernel extends ConsoleKernel {
 	{
 		$schedule->command('inspire')->hourly();
 		$schedule->command('harvest:thecodinglove')->hourly();
+		$schedule->command('scrape:thecodinglove')->hourly();
 	}
 
 }
