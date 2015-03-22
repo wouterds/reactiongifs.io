@@ -74,8 +74,14 @@ class NormalizeUXReactions extends Command {
 	private function getImageData($imgSrc)
 	{
 		$imgSrc = str_replace('.gifv', '.gif', $imgSrc);
-		$client = new GuzzleHttp\Client();
-		$response = $client->get($imgSrc);
+
+		try {
+			$client = new GuzzleHttp\Client();
+			$response = $client->get($imgSrc);
+		} catch (\Exception $e) {
+			$this->error($e->getMessage());
+			return null;
+		}
 
 		if ($body = $response->getBody()) {
 			if (empty($body)) {
@@ -136,10 +142,10 @@ class NormalizeUXReactions extends Command {
 		}
 
 		try {
-			$img = $post->find('.caption figure img')->attr('src');
+			$img = $post->find('.caption img')->attr('src');
 			$imgData = $this->getImageData($img);
 
-			if ($imgData === false) {
+			if (!$imgData) {
 				return $this->error("Failed getting image data");
 			}
 
@@ -169,6 +175,9 @@ class NormalizeUXReactions extends Command {
 			$title = $this->convert_smart_quotes($title);
 			$slug = Str::slug($title);
 
+			$time = $post->find('div.metadata div.date a')->text();
+			$time = strtotime($time);
+
 			$entry = Entry::where('slug', $slug)->where('picture_id', $picture->id)->first();
 
 			if ($entry) {
@@ -179,6 +188,7 @@ class NormalizeUXReactions extends Command {
 			$entry->picture_id = $picture->id;
 			$entry->title = $title;
 			$entry->slug = $slug;
+			$entry->published_at = $time;
 			$entry->save();
 		} catch (Exception $e) {
 			$this->error("Failed normalizing");
