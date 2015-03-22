@@ -59,8 +59,6 @@ class NormalizeTheCodingLove extends Command {
 		$this->info("Fetched " . count($batch) . " links");
 
 		foreach ($batch as $rawData) {
-
-			die(var_dump($rawData->harvestLink));
 			$this->normalizeRaw($rawData);
 		}
 
