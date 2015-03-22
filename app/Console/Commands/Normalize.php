@@ -38,11 +38,8 @@ class Normalize extends Command {
 	 */
 	public function fire()
 	{
-		if ($this->confirm('Do you wish to scrape everything? [yes|no]', true))
-		{
-			$this->call('normalize:thecodinglove');
-			$this->call('normalize:uxreactions');
-		}
+		$this->call('normalize:thecodinglove');
+		$this->call('normalize:uxreactions');
 	}
 
 	/**

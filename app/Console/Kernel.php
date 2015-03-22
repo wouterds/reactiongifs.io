@@ -16,8 +16,6 @@ class Kernel extends ConsoleKernel {
 		'App\Console\Commands\HarvestTheCodingLove',
 		'App\Console\Commands\HarvestUXReactions',
 		'App\Console\Commands\Scrape',
-		'App\Console\Commands\ScrapeTheCodingLove',
-		'App\Console\Commands\ScrapeUXReactions',
 		'App\Console\Commands\Normalize',
 		'App\Console\Commands\NormalizeTheCodingLove',
 		'App\Console\Commands\NormalizeUXReactions',
@@ -32,8 +30,8 @@ class Kernel extends ConsoleKernel {
 	protected function schedule(Schedule $schedule)
 	{
 		$schedule->command('inspire')->hourly();
-		$schedule->command('harvest:thecodinglove')->hourly();
-		$schedule->command('scrape:thecodinglove')->hourly();
+		$schedule->command('harvest')->hourly();
+		$schedule->command('scrape')->hourly();
 	}
 
 }

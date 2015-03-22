@@ -37,11 +37,8 @@ class Harvest extends Command {
 	 */
 	public function fire()
 	{
-		if ($this->confirm('Do you wish to harvest everything? [yes|no]', true))
-		{
-			$this->call('harvest:thecodinglove');
-			$this->call('harvest:uxreactions');
-		}
+		$this->call('harvest:thecodinglove');
+		$this->call('harvest:uxreactions');
 	}
 
 	/**
