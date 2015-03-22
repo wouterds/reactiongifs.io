@@ -92,8 +92,8 @@ class NormalizeTheCodingLove extends Command {
 				'width' => $info[0],
 				'height' => $info[1],
 				'mimetype' => $info["mime"],
-				'md5' => md5_file($newPath),
-				'size' => filesize($newPath),
+				'md5' => md5_file($tmpFile),
+				'size' => filesize($tmpFile),
 				'url' => '//static.reactiongifs.io/img/' . $filename,
 				'local' => $newPath,
 				'tmp' => $tmpFile
