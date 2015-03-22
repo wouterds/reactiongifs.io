@@ -18,6 +18,9 @@ class Kernel extends ConsoleKernel {
 		'App\Console\Commands\Scrape',
 		'App\Console\Commands\ScrapeTheCodingLove',
 		'App\Console\Commands\ScrapeUXReactions',
+		'App\Console\Commands\Normalize',
+		'App\Console\Commands\NormalizeTheCodingLove',
+		'App\Console\Commands\NormalizeUXReactions',
 	];
 
 	/**
