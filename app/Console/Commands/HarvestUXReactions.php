@@ -4,21 +4,21 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-class Harvest extends Command {
+class HarvestUXReactions extends Command {
 
 	/**
 	 * The console command name.
 	 *
 	 * @var string
 	 */
-	protected $name = 'harvest';
+	protected $name = 'harvest:uxreactions';
 
 	/**
 	 * The console command description.
 	 *
 	 * @var string
 	 */
-	protected $description = 'Harvest from 3rd party sites.';
+	protected $description = 'Harvest from UX Reactions.';
 
 	/**
 	 * Create a new command instance.
@@ -37,11 +37,7 @@ class Harvest extends Command {
 	 */
 	public function fire()
 	{
-		if ($this->confirm('Do you wish to harvest everything? [yes|no]', true))
-		{
-			$this->call('harvest:thecodinglove');
-			$this->call('harvest:uxreactions');
-		}
+		//
 	}
 
 	/**

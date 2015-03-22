@@ -18,8 +18,8 @@ class CreateEntriesTable extends Migration {
 			$table->string('title', 64);
 			$table->string('slug', 64)->unique();
 			$table->integer('gif_id')->index();
-			$table->timestamp('created_at');
-			$table->timestamp('updated_at');
+			$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+			$table->timestamp('updated_at')->nullable();
 		});
 	}
 

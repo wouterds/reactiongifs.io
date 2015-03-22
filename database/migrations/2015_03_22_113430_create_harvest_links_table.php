@@ -3,18 +3,15 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGifsTable extends Migration {
+class CreateHarvestLinksTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('gifs', function($table)
+		Schema::create('harvest_links', function($table)
 		{
 			$table->increments('id');
-			$table->string('md5', 32)->unique();
-			$table->integer('size');
-			$table->integer('width');
-			$table->integer('height');
-			$table->string('url', 2088);
+			$table->enum('source', ['UXREACTIONS', 'THECODINGLOVE'])->index();
+			$table->string('url', 2088)->index();
 			$table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 			$table->timestamp('updated_at')->nullable();
 		});
@@ -22,7 +19,7 @@ class CreateGifsTable extends Migration {
 
 	public function down()
 	{
-		Schema::drop('gifs');
+		Schema::drop('harvest_links');
 	}
 
 }
