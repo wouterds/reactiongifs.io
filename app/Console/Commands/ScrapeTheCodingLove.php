@@ -79,9 +79,12 @@ class ScrapeTheCodingLove extends Command {
 			$scrapeRaw = new ScrapeRaw();
 			$scrapeRaw->raw = $body;
 			$scrapeRaw->md5 = md5($body);
-			$scrapeRaw->save();
+			$id = $scrapeRaw->save();
 
 			$harvestLink->scrape_raw_id = $scrapeRaw->id;
+			$harvestLink->save();
+
+			return true;
 		}
 
 		return $this->error('Failed to get body..');
