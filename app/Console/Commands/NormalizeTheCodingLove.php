@@ -88,8 +88,6 @@ class NormalizeTheCodingLove extends Command {
 				mkdir($newFolder, 0755, true);
 			}
 
-			rename($tmpFile, $newPath);
-
 			return [
 				'width' => $info[0],
 				'height' => $info[1],
@@ -97,7 +95,8 @@ class NormalizeTheCodingLove extends Command {
 				'md5' => md5_file($newPath),
 				'size' => filesize($newPath),
 				'url' => '//static.reactiongifs.io/img/' . $filename,
-				'local' => $newPath
+				'local' => $newPath,
+				'tmp' => $tmpFile
 			];
 		}
 
@@ -123,15 +122,21 @@ class NormalizeTheCodingLove extends Command {
 			return $this->error("Failed getting image data");
 		}
 
-		$picture = new Picture();
-		$picture->width = $imgData['width'];
-		$picture->height = $imgData['height'];
-		$picture->url = $imgData['url'];
-		$picture->mimetype = $imgData['mimetype'];
-		$picture->size = $imgData['size'];
-		$picture->md5 = $imgData['md5'];
-		$picture->url = $imgData['url'];
-		$picture->save();
+		$picture = Picture::where('md5', $imgData['md5'])->first();
+
+		if (!$picture) {
+			rename($imgData['tmp'], $imgData['local']);
+
+			$picture = new Picture();
+			$picture->width = $imgData['width'];
+			$picture->height = $imgData['height'];
+			$picture->url = $imgData['url'];
+			$picture->mimetype = $imgData['mimetype'];
+			$picture->size = $imgData['size'];
+			$picture->md5 = $imgData['md5'];
+			$picture->url = $imgData['url'];
+			$picture->save();
+		}
 
 		$rawData->picture_id = $picture->id;
 		$rawData->save();
