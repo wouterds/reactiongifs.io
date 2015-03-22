@@ -8,7 +8,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use GuzzleHttp;
 use FluentDOM;
 
-use App\Gif;
+use App\Picture;
+use App\Entry;
 use App\ScrapeRaw;
 
 class NormalizeTheCodingLove extends Command {
@@ -51,7 +52,7 @@ class NormalizeTheCodingLove extends Command {
 
 	private function normalizeBatch()
 	{
-		$batch = ScrapeRaw::with('harvestLink')->where('gif_id', null)->take($this->batchSize)->orderBy('created_at', 'ASC')->get();
+		$batch = ScrapeRaw::with('harvestLink')->where('picture_id', null)->take($this->batchSize)->orderBy('created_at', 'ASC')->get();
 
 		$this->info("Fetched " . count($batch) . " links");
 
@@ -92,7 +93,7 @@ class NormalizeTheCodingLove extends Command {
 			return [
 				'width' => $info[0],
 				'height' => $info[1],
-				'mime' => $info["mime"],
+				'mimetype' => $info["mime"],
 				'md5' => md5_file($newPath),
 				'size' => filesize($newPath),
 				'url' => '//static.reactiongifs.io/img/' . $filename,
@@ -122,17 +123,24 @@ class NormalizeTheCodingLove extends Command {
 			return $this->error("Failed getting image data");
 		}
 
-		$gif = new Gif($imgData);
-		$gif->save();
+		$picture = new Picture();
+		$picture->width = $imgData['width'];
+		$picture->height = $imgData['height'];
+		$picture->url = $imgData['url'];
+		$picture->mimetype = $imgData['mimetype'];
+		$picture->size = $imgData['size'];
+		$picture->md5 = $imgData['md5'];
+		$picture->url = $imgData['url'];
+		$picture->save();
 
-		$rawData->gif_id = $gif->id;
+		$rawData->picture_id = $picture->id;
 		$rawData->save();
 
 		$title = $post->find('h3')->text();
 		$slug = Str::slug($title);
 
 		$entry = new Entry();
-		$entry->gif_id = $gif->id;
+		$entry->picture_id = $picture->id;
 		$entry->title = $title;
 		$entry->slug = $slug;
 		$entry->save();
