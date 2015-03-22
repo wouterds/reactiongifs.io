@@ -144,12 +144,13 @@ class NormalizeTheCodingLove extends Command {
 		$title = $post->find('h3')->text();
 		$slug = Str::slug($title);
 
-		$entry = Entry::where('slug', $slug)->first();
+		$entry = Entry::where('slug', $slug)->where('picture_id', $picture->id)->first();
 
-		if (!$entry) {
-			$entry = new Entry();
+		if ($entry) {
+			return;
 		}
 
+		$entry = new Entry();
 		$entry->picture_id = $picture->id;
 		$entry->title = $title;
 		$entry->slug = $slug;
