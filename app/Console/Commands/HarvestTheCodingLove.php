@@ -42,7 +42,7 @@ class HarvestTheCodingLove extends Command {
 	 */
 	public function fire()
 	{
-		$this->info("Starting harvesting from the coding love..\n");
+		$this->info("Starting harvesting from The Coding Love..\n");
 
 		$this->harvestPage();
 	}
