@@ -163,6 +163,8 @@ class NormalizeUXReactions extends Command {
 				$picture->md5 = $imgData['md5'];
 				$picture->url = $imgData['url'];
 				$picture->save();
+			} else {
+				unlink($imgData['tmp']);
 			}
 
 			$rawData->picture_id = $picture->id;
