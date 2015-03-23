@@ -180,7 +180,7 @@
 
 	main {
 		max-width: 720px;
-		padding: 100px 25px 75px;
+		padding: 75px 25px 65px;
 		width: 100%;
 		margin: 0 auto;
 		box-sizing: border-box;
@@ -193,12 +193,12 @@
 
 	main article {
 		padding: 10px;
+		font-size: 1.2em;
 	}
 
 	main article a {
 		text-decoration: none;
 		color: #2a2831;
-		font-size: 1.2em;
 	}
 
 	main article .comments {
