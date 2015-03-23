@@ -7,18 +7,32 @@
 	<meta name="robots" content="index, follow">
 	<meta property="og:title" content="{{ $entry->title }}">
 	<meta property="og:url" content="{{ Request::url() }}">
-	<meta property="og:image" content="{{ $entry->picture->url }}">
+	<meta property="og:image" content="https:{{ $entry->picture->url }}">
 	<style type="text/css">
+	html,
+	body,
+	#wrapper {
+		height: 100%;
+		padding: 0;
+		margin: 0;
+	}
+
 	body {
 		font-family: Roboto, Arial, sans-serif;
 		font-size: 62.5%;
-		padding: 0;
 		background: #fafafa;
 	}
 
 	#wrapper {
 		font-size: 1.6em;
-		text-align: center;
+	}
+
+	#wrapper > header {
+		background: #e92347;
+		color: #FFF;
+		font-weight: 600;
+		text-transform: uppercase;
+		font-style: italic;
 	}
 
 	.pagination li {
@@ -107,9 +121,17 @@
 
 			</article>
 
+			<!--
 			<footer>
-					<a href="{{ URL::previous() }}">Back</a>
+				@if ($nextEntry)
+				<a href="/{{ $nextEntry->slug }}-{{ $nextEntry->encoded_id }}">< Next</a>
+				@endif
+				|
+				@if ($prevEntry)
+				<a href="/{{ $prevEntry->slug }}-{{ $prevEntry->encoded_id }}">Previous ></a>
+				@endif
 			</footer>
+			-->
 
 		</main>
 

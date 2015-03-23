@@ -7,11 +7,37 @@ use App\Helper\IdObfuscator;
 
 class EntryController extends Controller {
 
-	public function index()
+	public function index($page = 0)
 	{
-		$entries = Entry::with('picture')->orderBy('published_at', 'DESC')->paginate(3);
+		$page = intval($page);
 
-		return view('entry/index')->with('entries', $entries);
+		if ($page < 1) {
+			$page = 1;
+		}
+
+		$amount = 3;
+		$total = ceil(Entry::count() / $amount);
+
+		$entries = Entry::with('picture')->orderBy('published_at', 'DESC')->orderBy('id', 'ASC')->offset(($page - 1) * $amount)->take($amount)->get();
+
+		$next = null;
+		if ($page * $amount < $total) {
+			$next = $page + 1;
+		}
+
+		$prev = null;
+		if ($page > 1) {
+			$prev = $page - 1;
+		}
+
+		$paging = [
+			'current' => $page,
+			'prev' => $prev,
+			'next' => $next,
+			'total' => $total,
+		];
+
+		return view('entry/index')->with('entries', $entries)->with('paging', $paging);
 	}
 
 	public function detailBySlug($slug)
@@ -22,9 +48,11 @@ class EntryController extends Controller {
 		$id = IdObfuscator::decode($id);
 
 		$entry = Entry::with('picture')->where('id', $id)->first();
+		$prevEntry = null;//Entry::with('picture')->where('published_at', '>=', $entry->published_at)->where('id', '>', $id)->first();
+		$nextEntry = null;//Entry::with('picture')->where('published_at', '<=', $entry->published_at)->where('id', '<', $id)->first();
 
 		if ($entry) {
-			return view('entry/detail')->with('entry', $entry);
+			return view('entry/detail')->with('entry', $entry)->with('prevEntry', $prevEntry)->with('nextEntry', $nextEntry);
 		}
 
 		return view('errors/404');
