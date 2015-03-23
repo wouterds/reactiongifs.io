@@ -74,6 +74,7 @@ class NormalizeTheCodingLove extends Command {
 	private function getImageData($imgSrc)
 	{
 		$imgSrc = str_replace('.gifv', '.gif', $imgSrc);
+		$imgSrc = str_replace('.jpg', '.gif', $imgSrc);
 		$client = new GuzzleHttp\Client();
 		$response = $client->get($imgSrc);
 

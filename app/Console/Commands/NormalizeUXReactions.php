@@ -74,6 +74,7 @@ class NormalizeUXReactions extends Command {
 	private function getImageData($imgSrc)
 	{
 		$imgSrc = str_replace('.gifv', '.gif', $imgSrc);
+		$imgSrc = str_replace('.jpg', '.gif', $imgSrc);
 
 		try {
 			$client = new GuzzleHttp\Client();

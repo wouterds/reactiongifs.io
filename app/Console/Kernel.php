@@ -11,7 +11,6 @@ class Kernel extends ConsoleKernel {
 	 * @var array
 	 */
 	protected $commands = [
-		'App\Console\Commands\Inspire',
 		'App\Console\Commands\Harvest',
 		'App\Console\Commands\HarvestTheCodingLove',
 		'App\Console\Commands\HarvestUXReactions',
@@ -29,10 +28,9 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-		$schedule->command('inspire')->hourly();
-		$schedule->command('harvest')->hourly();
-		$schedule->command('scrape')->everyThirtyMinutes();
-		$schedule->command('normalize')->everyTenMinutes();
+		$schedule->command('harvest')->twiceDaily();
+		$schedule->command('scrape')->hourly();
+		$schedule->command('normalize')->everyThirtyMinutes();
 	}
 
 }
