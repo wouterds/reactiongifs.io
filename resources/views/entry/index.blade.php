@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 	<meta name="robots" content="index, follow">
 	<meta property="og:title" content="Reactiongifs.IO | GIFs about everyday situations of designers & developers!">
-	<meta property="og:image" content="https://reactiongifs/layout/img/reactiongifs.jpg">
+	<meta property="og:image" content="https://reactiongifs.io/layout/img/reactiongifs.jpg">
 	<link rel="icon" href="/layout/img/reactiongifs.jpg">
 	<link rel="apple-touch-icon-precomposed" href="/layout/img/reactiongifs.jpg">
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
