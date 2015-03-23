@@ -100,11 +100,10 @@
 
 			@endforeach
 
+			<footer>
+				{!! $entries->render() !!}
+			</footer>
 		</main>
-
-		<footer>
-			{!! $entries->render() !!}
-		</footer>
 
 	</div>
 	<script>
