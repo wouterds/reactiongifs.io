@@ -190,7 +190,7 @@ class NormalizeUXReactions extends Command {
 			$entry->picture_id = $picture->id;
 			$entry->title = $title;
 			$entry->slug = $slug;
-			$entry->published_at = $time;
+			$entry->published_at = $time ? gmdate("Y-m-d H:i:s", $time) : null;
 			$entry->save();
 		} catch (Exception $e) {
 			$this->error("Failed normalizing");
