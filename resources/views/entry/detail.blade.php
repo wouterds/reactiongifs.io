@@ -21,10 +21,12 @@
 		padding: 25px;
 		width: 100%;
 		margin: 0 auto;
+		box-sizing: border-box;
 	}
 
 	main article img {
 		width: 100%;
+		box-sizing: border-box;
 	}
 
 	main article .comments {
