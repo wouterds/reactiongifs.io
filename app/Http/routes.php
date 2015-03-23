@@ -12,3 +12,4 @@
 */
 
 Route::get('/', 'EntryController@index');
+Route::get('/{slug}', 'EntryController@detailBySlug');
