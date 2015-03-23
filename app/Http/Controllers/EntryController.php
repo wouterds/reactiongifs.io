@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use Request;
+use Redirect;
 use App\Entry;
 
 use App\Helper\IdObfuscator;
@@ -45,9 +46,15 @@ class EntryController extends Controller {
 		$id = explode("-", $slug);
 		$id = end($id);
 		$id = intval($id);
+		$slug = str_replace("-" . $id, "", $slug);
 		$id = IdObfuscator::decode($id);
 
 		$entry = Entry::with('picture')->where('id', $id)->first();
+
+		if ($entry->slug != $slug) {
+			return Redirect::to('/' . $entry->slug . '-' . $entry->encoded_id);
+		}
+
 		$prevEntry = null;//Entry::with('picture')->where('published_at', '>=', $entry->published_at)->where('id', '>', $id)->first();
 		$nextEntry = null;//Entry::with('picture')->where('published_at', '<=', $entry->published_at)->where('id', '<', $id)->first();
 
