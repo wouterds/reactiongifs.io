@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Reactiongifs.IO</title>
+	<title>{{ $entry->title }} | Reactiongifs.IO</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-	<meta name="author" content="Wouter De Schuyter">
 	<meta name="robots" content="index, follow">
 	<meta property="og:title" content="{{ $entry->title }}">
 	<meta property="og:url" content="{{ Request::url() }}">

@@ -3,6 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Reactiongifs.IO</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<meta name="robots" content="index, follow">
+	<meta property="og:title" content="Reactionsgifs.IO">
 	<style type="text/css">
 	.pagination li {
 		list-style: inside;
@@ -22,6 +25,10 @@
 		width: 100%;
 	}
 
+	main article .comments {
+		margin-top: 15px;
+	}
+
 	main article + article {
 		margin-top: 35px;
 	}
@@ -29,7 +36,21 @@
 	footer {
 		margin-top: 15px;
 	}
+
+	main article .social div,
+	main article .social iframe {
+		vertical-align: top;
+		line-height: 0;
+	}
+
+	main article .social iframe {
+		max-width: 92px;
+	}
 	</style>
+	<!--[if lt IE 9]>
+		<script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
 </head>
 <body>
 
