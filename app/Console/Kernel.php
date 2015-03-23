@@ -32,6 +32,7 @@ class Kernel extends ConsoleKernel {
 		$schedule->command('inspire')->hourly();
 		$schedule->command('harvest')->hourly();
 		$schedule->command('scrape')->hourly();
+		$schedule->command('normalize')->hourly();
 	}
 
 }
