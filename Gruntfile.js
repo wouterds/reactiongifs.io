@@ -13,7 +13,7 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					expand: true,
-					cwd: 'resources/layout/',
+					cwd: 'resources/layout/scss/',
 					src: ['**/*.scss'],
 					dest: 'public/layout/css/',
 					ext: '.css'
@@ -50,7 +50,7 @@ module.exports = function(grunt) {
 				}
 			},
 			sass: {
-				files: ['resources/layout/**/*.scss'],
+				files: ['resources/layout/scss/**/*.scss'],
 				tasks: ['newer:sass:development']
 			},
 			imagemin: {
