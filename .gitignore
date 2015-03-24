@@ -1,5 +1,8 @@
-/vendor
-/node_modules
+.DS_Store
 .env
-/storage/logs
-.rocketeer/logs/*
+
+.rocketeer/logs/
+vendor/
+node_modules/
+storage/logs/
+public/layout/

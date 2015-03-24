@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 					expand: true,
 					cwd: 'resources/layout/',
 					src: ['**/*.scss'],
-					dest: 'public/layout/css',
+					dest: 'public/layout/css/',
 					ext: '.css'
 				}]
 			},
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
 					expand: true,
 					cwd: 'resources/layout/',
 					src: ['**/*.scss'],
-					dest: 'public/layout/css',
+					dest: 'public/layout/css/',
 					ext: '.css'
 				}]
 			}
@@ -36,7 +36,8 @@ module.exports = function(grunt) {
 			all: {
 				files: [{
 					expand: true,
-					src: ['resources/layout/img/**/*.{png,jpg,gif}'],
+					cwd: 'resources/',
+					src: ['layout/img/**/*.{png,jpg,gif}'],
 					dest: 'public/'
 				}]
 			}
