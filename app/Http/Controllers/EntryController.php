@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use Session;
 use Request;
 use Redirect;
 use App\Entry;
@@ -8,8 +9,32 @@ use App\Helper\IdObfuscator;
 
 class EntryController extends Controller {
 
+	private $hasAccess = false;
+
+	private function checkAccess()
+	{
+		$accessToken = Request::input('accessToken');
+
+		if (empty($accessToken)) {
+			$accessToken = Session::get('accessToken');
+		}
+
+		Session::put('accessToken', $accessToken);
+
+		if ($accessToken !== '69ee50d656fb3d3935feffa97606106d4bdbbc53') {
+			return view('errors/no-access');
+		}
+
+		return false;
+	}
+
 	public function index($page = 0)
 	{
+		$access = $this->checkAccess();
+		if ($access) {
+			return $access;
+		}
+
 		$page = intval($page);
 
 		if ($page < 1) {
