@@ -4,5 +4,4 @@
 .rocketeer/logs/
 vendor/
 node_modules/
-storage/logs/
 public/layout/
