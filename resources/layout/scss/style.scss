@@ -4,7 +4,6 @@
 
 @import 'includes/header.scss';
 @import 'includes/footer.scss';
-@import 'includes/main.scss';
 
 html,
 body {
@@ -38,7 +37,11 @@ body {
 			font-size: 1.2em;
 
 			& + article {
-				margin-top: 35px;
+				margin-top: 20px;
+			}
+
+			h2 {
+				margin: 10px 0;
 			}
 
 			img {
