@@ -71,12 +71,37 @@ class NormalizeTheCodingLove extends Command {
 		$this->info("Everything is normalized!");
 	}
 
+	private $extensionType = 0;
+
+	private function getImage($imgSrc)
+	{
+		if ($this->extensionType === 1) {
+			$imgSrc = str_replace('.gif', '.jpg', $imgSrc);
+		}
+
+		try {
+			$client = new GuzzleHttp\Client();
+			$response = $client->get($imgSrc);
+		} catch (\Exception $e) {
+			$this->error('COULD NOT GET IMAGE! Exception: ' . $e->getMessage());
+
+			if ($e->getCode() === 404) {
+				$this->info('Retrying with new extension..');
+
+				$this->extensionType = 1;
+				return $this->getImage($imgSrc);
+			}
+		}
+
+		return $response;
+	}
+
 	private function getImageData($imgSrc)
 	{
 		$imgSrc = str_replace('.gifv', '.gif', $imgSrc);
 		$imgSrc = str_replace('.jpg', '.gif', $imgSrc);
-		$client = new GuzzleHttp\Client();
-		$response = $client->get($imgSrc);
+
+		$response = $this->getImage($imgSrc);
 
 		if ($body = $response->getBody()) {
 			if (empty($body)) {
