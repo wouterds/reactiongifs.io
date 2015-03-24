@@ -1,8 +1,7 @@
 @import '../base/variables.scss';
-@import '../base/global.scss';
 
 #wrapper > header {
-	background: #d5002d;
+	background: $red;
 	color: #fff;
 	font-weight: 600;
 	text-transform: uppercase;

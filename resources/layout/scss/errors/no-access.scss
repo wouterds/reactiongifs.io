@@ -1,0 +1,17 @@
+@import '../base/variables.scss';
+
+#wrapper {
+	> header {
+		height: 100%;
+		padding: 250px;
+		text-align: center;
+		font-size: 2em;
+
+		h1,
+		h2 {
+			display: block;
+			padding: 15px;
+			margin: 0;
+		}
+	}
+}
