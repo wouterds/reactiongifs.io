@@ -2,4 +2,4 @@
 /node_modules
 .env
 /storage/logs
-.rocketeer/logs
+.rocketeer/logs/*
