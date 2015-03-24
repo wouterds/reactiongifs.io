@@ -1,0 +1,19 @@
+@import 'variables.scss';
+
+.hidden {
+	display: none;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clear:after {
+	display: block;
+	content: '';
+	clear: both;
+}

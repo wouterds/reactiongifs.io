@@ -1,0 +1,24 @@
+@import 'base/variables.scss';
+@import 'base/global.scss';
+
+@import 'includes/header.scss';
+@import 'includes/footer.scss';
+@import 'includes/main.scss';
+
+* {
+	margin: 0;
+	padding: 0;
+	outline: 0;
+}
+
+body {
+	font-size: 62.5%;
+	background: #fff url('../img/bodyBg.jpg') fixed no-repeat;
+	background-size: cover;
+}
+
+html,
+body,
+#wrapper {
+	height: 100%;
+}
