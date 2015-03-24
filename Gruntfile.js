@@ -51,7 +51,7 @@ module.exports = function(grunt) {
 			},
 			sass: {
 				files: ['resources/layout/scss/**/*.scss'],
-				tasks: ['newer:sass:development']
+				tasks: ['sass:development']
 			},
 			imagemin: {
 				files: ['resources/layout/img/**/*.{png,jpg,gif}'],
@@ -64,6 +64,6 @@ module.exports = function(grunt) {
 	});
 
 	grunt.registerTask('default', ['development', 'watch']);
-	grunt.registerTask('development', ['newer:sass:development', 'newer:imagemin:all']);
-	grunt.registerTask('production', ['newer:sass:production', 'newer:imagemin:all']);
+	grunt.registerTask('development', ['sass:development', 'newer:imagemin:all']);
+	grunt.registerTask('production', ['sass:production', 'newer:imagemin:all']);
 };

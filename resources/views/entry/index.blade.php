@@ -1,11 +1,7 @@
 @include('base/_header')
 
 	<div id="wrapper">
-		<header>
-			<h1>Reactiongifs.IO</h1>
-			<h2>Gifs about everyday situations of designers &amp; developers!</h2>
-			<p class="current-page"><span>p</span>{{ $paging['current'] }}</p>
-		</header>
+		@include('includes/header')
 
 		<main>
 			@foreach($entries as $entry)
