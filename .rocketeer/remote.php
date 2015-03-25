@@ -33,7 +33,7 @@ return array(
 		'{path.storage}/logs',
 		'{path.storage}/sessions',
 		'.env',
-		'static'
+		'static',
 	),
 
 	// Execution
