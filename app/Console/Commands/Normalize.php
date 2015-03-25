@@ -4,6 +4,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
+use DB;
 
 class Normalize extends Command {
 
@@ -38,6 +39,8 @@ class Normalize extends Command {
 	 */
 	public function fire()
 	{
+		DB::connection()->disableQueryLog();
+
 		$this->call('normalize:thecodinglove');
 		$this->call('normalize:uxreactions');
 	}

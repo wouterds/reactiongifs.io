@@ -2,9 +2,4 @@
 
 abstract class Command {
 
-	public function __construct()
-	{
-		DB::connection()->disableQueryLog();
-	}
-
 }
