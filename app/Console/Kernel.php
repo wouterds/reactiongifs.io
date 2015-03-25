@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-		$schedule->command('harvest')->twiceDaily();
+		$schedule->command('harvest')->hourly();
 		$schedule->command('scrape')->hourly();
 		$schedule->command('normalize')->everyThirtyMinutes();
 	}
