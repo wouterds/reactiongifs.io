@@ -165,6 +165,9 @@ class NormalizeUXReactions extends Command {
 
 		try {
 			$img = $post->find('.caption img')->attr('src');
+
+			$this->info("Downloading image " . $img);
+			
 			$imgData = $this->getImageData($img);
 
 			if (!$imgData) {

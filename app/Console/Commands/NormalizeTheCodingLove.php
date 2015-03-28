@@ -152,6 +152,9 @@ class NormalizeTheCodingLove extends Command {
 
 		try {
 			$img = $post->find('img')->attr('src');
+
+			$this->info("Downloading image " . $img);
+
 			$imgData = $this->getImageData($img);
 
 			if ($imgData === false) {
