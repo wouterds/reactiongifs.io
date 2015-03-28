@@ -79,6 +79,8 @@ class NormalizeTheCodingLove extends Command {
 			$imgSrc = str_replace('.gif', '.jpg', $imgSrc);
 		}
 
+		$response = null;
+
 		try {
 			$client = new GuzzleHttp\Client();
 			$response = $client->get($imgSrc);
@@ -103,7 +105,7 @@ class NormalizeTheCodingLove extends Command {
 
 		$response = $this->getImage($imgSrc);
 
-		if ($body = $response->getBody()) {
+		if ($response && $body = $response->getBody()) {
 			if (empty($body)) {
 				return null;
 			}
