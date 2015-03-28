@@ -4,8 +4,6 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-use DB;
-
 class Harvest extends Command {
 
 	/**
@@ -39,8 +37,6 @@ class Harvest extends Command {
 	 */
 	public function fire()
 	{
-		DB::connection()->disableQueryLog();
-
 		$this->call('harvest:thecodinglove');
 		$this->call('harvest:uxreactions');
 	}

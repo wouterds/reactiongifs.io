@@ -4,8 +4,6 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
-use DB;
-
 use App\HarvestLink;
 use App\ScrapeRaw;
 
@@ -36,8 +34,6 @@ class Scrape extends Command {
 	 */
 	public function __construct()
 	{
-		DB::connection()->disableQueryLog();
-
 		parent::__construct();
 	}
 
