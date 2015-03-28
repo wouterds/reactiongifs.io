@@ -28,9 +28,9 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-		$schedule->command('harvest')->hourly();
-		$schedule->command('scrape')->hourly();
-		$schedule->command('normalize')->everyThirtyMinutes();
+		$schedule->command('harvest')->hourly()/*->skipWhenAlreadyRunning()*/;
+		$schedule->command('scrape')->hourly()/*->skipWhenAlreadyRunning()*/;
+		$schedule->command('normalize')->everyThirtyMinutes()/*->skipWhenAlreadyRunning()*/;
 	}
 
 }
