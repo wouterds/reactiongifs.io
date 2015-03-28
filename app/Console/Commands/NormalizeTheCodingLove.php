@@ -101,6 +101,7 @@ class NormalizeTheCodingLove extends Command {
 	private function getImageData($imgSrc)
 	{
 		$imgSrc = str_replace('.gifv', '.gif', $imgSrc);
+		$imgSrc = str_replace('.webm', '.gif', $imgSrc);
 		$imgSrc = str_replace('.jpg', '.gif', $imgSrc);
 
 		$response = $this->getImage($imgSrc);
@@ -152,6 +153,10 @@ class NormalizeTheCodingLove extends Command {
 
 		try {
 			$img = $post->find('img')->attr('src');
+
+			if (empty($img)) {
+				$img = $post->find('video source')->first()->attr('src');
+			}
 
 			$this->info("Downloading image " . $img);
 

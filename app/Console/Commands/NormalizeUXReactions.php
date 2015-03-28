@@ -101,6 +101,7 @@ class NormalizeUXReactions extends Command {
 	private function getImageData($imgSrc)
 	{
 		$imgSrc = str_replace('.gifv', '.gif', $imgSrc);
+		$imgSrc = str_replace('.webm', '.gif', $imgSrc);
 		$imgSrc = str_replace('.jpg', '.gif', $imgSrc);
 
 		$response = $this->getImage($imgSrc);
@@ -166,8 +167,12 @@ class NormalizeUXReactions extends Command {
 		try {
 			$img = $post->find('.caption img')->attr('src');
 
+			if (empty($img)) {
+				$img = $post->find('.caption video source')->first()->attr('src');
+			}
+
 			$this->info("Downloading image " . $img);
-			
+
 			$imgData = $this->getImageData($img);
 
 			if (!$imgData) {
