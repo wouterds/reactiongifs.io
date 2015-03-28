@@ -55,7 +55,6 @@ return array(
 		// You can pass paths in brackets, so {path.public} will return
 		// the correct path to the public folder
 		'files'    => array(
-			'app/database/production.sqlite',
 			'{path.storage}',
 			'{path.public}',
 		),
