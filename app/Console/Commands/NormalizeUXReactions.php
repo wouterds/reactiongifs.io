@@ -171,11 +171,17 @@ class NormalizeUXReactions extends Command {
 				$img = $post->find('.caption video source')->first()->attr('src');
 			}
 
+			if (substr($img, 0, 2) === '//') {
+				$img = 'http:' . $img;
+			}
+
 			$this->info("Downloading image " . $img);
 
 			$imgData = $this->getImageData($img);
 
 			if (!$imgData) {
+				$rawData->picture_id = 0;
+				$rawData->save();
 				return $this->error("Failed getting image data");
 			}
 
