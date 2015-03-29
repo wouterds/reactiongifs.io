@@ -22,7 +22,7 @@ class EntryController extends Controller {
 		Session::put('accessToken', $accessToken);
 
 		if ($accessToken !== '69ee50d656fb3d3935feffa97606106d4bdbbc53') {
-			return view('errors/no-access');
+			//return view('errors/no-access');
 		}
 
 		return false;

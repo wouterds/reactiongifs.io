@@ -26,8 +26,8 @@ body {
 	height: 100%;
 
 	> main {
-		max-width: 720px;
-		padding: 100px 25px 65px;
+		max-width: 600px;
+		padding: 25px;
 		width: 100%;
 		margin: 0 auto;
 		box-sizing: border-box;
@@ -63,12 +63,27 @@ body {
 				iframe {
 					vertical-align: top;
 					line-height: 0;
+
+					span,
+					div {
+						vertical-align: top !important;
+					}
 				}
 
 				iframe {
 					max-width: 92px;
 				}
 			}
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#wrapper > main {
+		padding: 10px 10px 25px;
+
+		article + article {
+			margin-top: 5px;
 		}
 	}
 }

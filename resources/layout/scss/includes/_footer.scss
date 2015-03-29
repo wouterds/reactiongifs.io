@@ -1,7 +1,7 @@
 @import '../base/variables.scss';
 
 #wrapper > footer {
-	position: fixed;
+	position: relative;
 	bottom: 0;
 	left: 0;
 	width: 100%;
@@ -37,52 +37,62 @@
 		}
 	}
 
-	.pagination {
-		&.center {
-			bottom: 0;
-			background: #d5002d;
+	.pagination.center {
+		bottom: 0;
+		background: #d5002d;
+		color: #fff;
+		display: inline-block;
+		min-width: 200px;
+		height: 40px;
+		padding: 0;
+		border-top-right-radius: 3px;
+		border-top-left-radius: 3px;
+		line-height: 44px;
+		overflow: hidden;
+		margin-bottom: -4px;
+
+		a {
 			color: #fff;
+			font-weight: 500;
+			text-decoration: none;
+			padding: 0 15px;
+			min-width: 30px;
 			display: inline-block;
-			min-width: 200px;
-			height: 40px;
-			padding: 0 10px;
-			border-top-right-radius: 3px;
-			border-top-left-radius: 3px;
-			line-height: 44px;
-			overflow: hidden;
-			margin-bottom: -4px;
+			float: left;
 
-			a {
-				color: #fff;
-				font-weight: 500;
-				text-decoration: none;
-				padding: 0 5px;
-				min-width: 30px;
-				display: inline-block;
-				float: left;
-
-				&:hover {
-					background: rgba(0, 0, 0, 0.1);
-				}
-			}
-
-			.current {
-				background: #2a2831;
-				font-weight: 600;
-				font-style: italic;
-				font-size: 1.2em;
-				height: 40px;
-				display: inline-block;
-				padding: 0 15px;
-				float: left;
+			&:hover {
+				background: rgba(0, 0, 0, 0.1);
 			}
 		}
 
-		li {
-			list-style: inside;
-			list-style-type: none;
+		.current {
+			background: #2a2831;
+			font-weight: 600;
+			font-style: italic;
+			font-size: 1.2em;
+			height: 40px;
 			display: inline-block;
-			padding: 5px;
+			padding: 0 15px;
+			float: left;
+		}
+	}
+
+	li {
+		list-style: inside;
+		list-style-type: none;
+		display: inline-block;
+		padding: 5px;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	#wrapper > footer {
+		.pagination.center {
+
+			.current,
+			a {
+				padding: 0 13px;
+			}
 		}
 	}
 }

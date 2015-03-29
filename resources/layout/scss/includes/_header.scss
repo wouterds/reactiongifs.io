@@ -8,8 +8,8 @@
 	font-style: italic;
 	padding: 15px 100px 15px 30px;
 	font-size: 1.4em;
-	position: fixed;
 	width: 100%;
+	position: relative;
 
 	a {
 		color: #fff;
@@ -51,6 +51,23 @@
 			height: 100%;
 			vertical-align: middle;
 			margin-right: -0.25em;
+		}
+	}
+}
+
+@media screen and (max-width: 860px) {
+	#wrapper > header h2 {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	#wrapper > header {
+		font-size: 4.4vw;
+		padding: 3vw 5vw 3vw 4vw;
+
+		.current-page {
+			padding: 0 6vw;
 		}
 	}
 }
