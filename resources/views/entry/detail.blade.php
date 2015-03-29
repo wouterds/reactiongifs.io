@@ -25,4 +25,17 @@
 		</main>
 	</div>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>
+<script>
+if (history && history.length) {
+	var $goBack = $('a[data-id=go-back]');
+	$goBack.parent().removeClass('hidden');
+
+	$goBack.on('click', function(e) {
+		e.preventDefault();
+		
+		history.back();
+	})
+}
+</script>
 @include('base/_footer')

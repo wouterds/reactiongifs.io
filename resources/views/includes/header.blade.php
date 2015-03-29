@@ -4,4 +4,6 @@
 	@if (isset($paging))
 	<p class="current-page"><span>p</span>{{ $paging['current'] }}</p>
 	@endif
+
+	<p class="go-back hidden"><a data-id="go-back" href="#back"><i class="fa fa-chevron-left"></i></a></p>
 </header>
