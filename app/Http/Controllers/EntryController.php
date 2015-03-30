@@ -80,6 +80,9 @@ class EntryController extends Controller {
 			return Redirect::to('/' . $entry->slug . '-' . $entry->encoded_id);
 		}
 
+		$this->setOgTitle($entry->title . " | Reactiongifs.IO");
+		$this->setOgImage('https:' . $entry->picture->url);
+
 		$prevEntry = null;//Entry::with('picture')->where('published_at', '>=', $entry->published_at)->where('id', '>', $id)->first();
 		$nextEntry = null;//Entry::with('picture')->where('published_at', '<=', $entry->published_at)->where('id', '<', $id)->first();
 
