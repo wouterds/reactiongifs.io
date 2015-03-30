@@ -12,7 +12,7 @@
 
 					<a href="/{{ $entry->slug }}-{{ $entry->encoded_id }}">
 						<div class="image">
-							<img src="/layout/img/loader.gif" data-src="{{ $entry->picture->url }}" alt="{{ $entry->title }}" width="{{ $entry->picture->width }}" height="{{ $entry->picture->height }}">
+							<img src="/layout/img/loader.gif" data-src="{{ $entry->picture->url }}" alt="{{ $entry->title }}">
 						</div>
 					</a>
 				</article>
