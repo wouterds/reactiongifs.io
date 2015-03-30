@@ -11,7 +11,9 @@
 					<h2>{{ $entry->title }}</h2>
 				</header>
 
-				<img src="{{ $entry->picture->url }}" alt="{{ $entry->title }}">
+				<div class="image">
+					<img src="{{ $entry->picture->url }}" alt="{{ $entry->title }}">
+				</div>
 
 				<div class="social">
 					<a class="twitter-share-button" href="https://twitter.com/share" data-text="{{ $entry->title }}">Tweet</a>
@@ -33,7 +35,7 @@ if (history && history.length) {
 
 	$goBack.on('click', function(e) {
 		e.preventDefault();
-		
+
 		history.back();
 	})
 }

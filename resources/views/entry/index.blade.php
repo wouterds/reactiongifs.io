@@ -11,17 +11,25 @@
 					</header>
 
 					<a href="/{{ $entry->slug }}-{{ $entry->encoded_id }}">
-						<img src="{{ $entry->picture->url }}" alt="{{ $entry->title }}">
+						<div class="image">
+							<img src="/layout/img/loader.gif" data-src="{{ $entry->picture->url }}" alt="{{ $entry->title }}" width="{{ $entry->picture->width }}" height="{{ $entry->picture->height }}">
+						</div>
 					</a>
 				</article>
 			@endforeach
 		</main>
 
-		<footer>
+		<nav class="prev-next">
 			@if ($paging['prev'])
-			<a href="/page/{{ $paging['prev'] }}" class="pagination left"><i class="fa fa-chevron-left"></i></a>
+			<a href="/page/{{ $paging['prev'] }}" class="left"><i class="fa fa-chevron-left"></i></a>
 			@endif
 
+			@if ($paging['next'])
+			<a href="/page/{{ $paging['next'] }}" class="right"><i class="fa fa-chevron-right"></i></a>
+			@endif
+		</nav>
+
+		<footer>
 			<div class="pagination center">
 				@for($i = $paging['current'] - 3; $i < $paging['current']; $i++)
 				@if ($i > 0)
@@ -35,10 +43,6 @@
 				@endif
 				@endfor
 			</div>
-
-			@if ($paging['next'])
-			<a href="/page/{{ $paging['next'] }}" class="pagination right"><i class="fa fa-chevron-right"></i></a>
-			@endif
 		</footer>
 	</div>
 

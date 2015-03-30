@@ -4,6 +4,7 @@
 
 @import 'includes/header.scss';
 @import 'includes/footer.scss';
+@import 'includes/nav.scss';
 
 html,
 body {
@@ -35,6 +36,8 @@ body {
 		article {
 			padding: 10px;
 			font-size: 1.2em;
+			position: relative;
+			z-index: 1;
 
 			& + article {
 				margin-top: 20px;
@@ -44,9 +47,22 @@ body {
 				margin: 10px 0;
 			}
 
-			img {
-				width: 100%;
-				box-sizing: border-box;
+			.image {
+				text-align: center;
+
+				img {
+					box-sizing: border-box;
+					width: 100%;
+					height: auto;
+
+					&[src="/layout/img/loader.gif"] {
+						width: auto;
+						padding: 75px 0;
+						transform: scale(0.5);
+						display: inline-block;
+						z-index: -1;
+					}
+				}
 			}
 
 			a {

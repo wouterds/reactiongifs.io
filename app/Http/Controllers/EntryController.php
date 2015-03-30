@@ -41,7 +41,7 @@ class EntryController extends Controller {
 			$page = 1;
 		}
 
-		$amount = 3;
+		$amount = 5;
 		$total = ceil(Entry::count() / $amount);
 
 		$entries = Entry::with('picture')->orderBy('published_at', 'DESC')->orderBy('id', 'ASC')->offset(($page - 1) * $amount)->take($amount)->get();
