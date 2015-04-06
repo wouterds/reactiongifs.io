@@ -6,13 +6,6 @@
 @import 'includes/footer.scss';
 @import 'includes/nav.scss';
 
-html,
-body {
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-}
-
 body {
 	font-size: 62.5%;
 	font-family: Roboto, Arial, sans-serif;
@@ -21,10 +14,6 @@ body {
 
 #wrapper {
 	font-size: 1.6em;
-	position: relative;
-	overflow: scroll;
-	-webkit-overflow-scrolling: touch;
-	height: 100%;
 
 	> main {
 		max-width: 600px;

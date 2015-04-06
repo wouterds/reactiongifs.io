@@ -10,12 +10,6 @@ if ('addEventListener' in document) {
 	}, false);
 }
 
-(function() {
-	$('img').unveil(300, function() {
-		$(this).parent().addClass('loaded');
-	});
-})();
-
 var $left = $('.prev-next .left');
 var $right = $('.prev-next .right');
 
@@ -37,6 +31,12 @@ $(document).on('keydown', function(e) {
 		$selected.addClass('active');
 		window.location = $selected.attr('href');
 	}
+});
+
+$(document).ready(function() {
+	$('img').unveil(100, function() {
+		$(this).parent().addClass('loaded');
+	});
 });
 </script>
 </body>
