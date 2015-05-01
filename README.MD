@@ -1,8 +1,11 @@
 # Reactiongifs.io
 
+![Demo](https://up.kibakoapp.com/XdGOvtIJyt!)
+
 Simple site with nerdy gifs scraped from 2 sources:
-	- the coding love
-	- ux reactions
+
+* the coding love
+* ux reactions
 
 ## Cron entry
 
